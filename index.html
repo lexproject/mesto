@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/style.css">
+  <title>Место</title>
+  <meta name= "description" content= "Проект интерактивного сайта Место на Яндекс.Практикуме">
+  <meta name="keywords" content="html, css, БЭМ, flex, grid, javascript">
+  <meta name= "author" content= "Ожог Виктор">
+</head>
+<body class="page">
+  <header class="header"></header>
+  <main>
+    <section class="profile">
+      <img src="./images/profile_image.jpg" alt="Жак-Ив Кусто" class="profile__avatar">
+      <div class="profile__info">
+        <h1 class="profile__title text-over">Жак-Ив Кусто</h1>
+        <input type="button" class="profile__edit-button">
+        <p class="profile__job text-over">Исследователь океана</p>
+      </div>
+      <input type="button" class="profile__add-button">
+    </section>
+    <section class="popup">
+      <form class="popup__container">
+        <input type="button" class="popup__close">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input type="text" name="personname" class="popup__input popup__input_type_name ">
+        <input type="text" name="personjob" class="popup__input popup__input_type_job">
+        <input type="button" class="popup__button" value="Сохранить">
+      </form>
+    </section>
+    <section aria-label="Красивые места">
+      <ul class="places">
+        <li class="place-card">
+          <img src="./images/karacaevsk.jpg" alt="Карачаево-Черкесия" class="place-card__image">
+          <div class="place-card__info">
+            <h4 class="place-card__title text-over">Карачаевск</h4>
+            <button class="place-card__like"></button>
+          </div>
+        </li>
+        <li class="place-card">
+          <img src="./images/elibrus.jpg" alt="Эльбрус" class="place-card__image">
+          <div class="place-card__info">
+            <h4 class="place-card__title text-over">Гора Эльбрус</h4>
+            <button class="place-card__like"></button>
+          </div>
+        </li>
+        <li class="place-card">
+          <img src="./images/dombai.jpg" alt="Домбай" class="place-card__image">
+          <div class="place-card__info">
+            <h4 class="place-card__title text-over">Домбай</h4>
+            <button class="place-card__like"></button>
+          </div>
+        </li>
+        <li class="place-card">
+          <img src="./images/coral-rif.jpg" alt="" class="place-card__image">
+          <div class="place-card__info">
+            <h4 class="place-card__title text-over">Коралловый риф</h4>
+            <button class="place-card__like"></button>
+          </div>
+        </li>
+        <li class="place-card">
+          <img src="./images/kaliningrad.jpg" alt="Музей мирового океана" class="place-card__image">
+          <div class="place-card__info">
+            <h4 class="place-card__title text-over">Музей мирового океана</h4>
+            <button class="place-card__like"></button>
+          </div>
+        </li>
+        <li class="place-card">
+          <img src="./images/mir.jpg" alt="" class="place-card__image">
+          <div class="place-card__info">
+            <h4 class="place-card__title text-over">Подводный "Мир"</h4>
+            <button class="place-card__like"></button>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">© 2020 Mesto Russia</p>
+  </footer>
+  <script src="./index.js"></script>
+</body>
+</html>

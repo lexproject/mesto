@@ -1,0 +1,6 @@
+.place-card__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 15px 30px 20px;
+}
