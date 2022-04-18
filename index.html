@@ -11,68 +11,72 @@
   <meta name= "author" content= "Ожог Виктор">
 </head>
 <body class="page">
-  <header class="header"></header>
+  <header class="header">
+    <div class="logo"></div>
+  </header>
   <main>
     <section class="profile">
       <img src="./images/profile_image.jpg" alt="Жак-Ив Кусто" class="profile__avatar">
       <div class="profile__info">
         <h1 class="profile__title text-over">Жак-Ив Кусто</h1>
-        <button type="button" class="profile__edit-button"></button>
+        <button type="button" class="profile__edit-button" aria-label="Редактировать"></button>
         <p class="profile__job text-over">Исследователь океана</p>
       </div>
-      <button type="button" class="profile__add-button"></button>
+      <button type="button" class="profile__add-button" aria-label="Добавить"></button>
     </section>
-    <section class="popup">
-      <form action="index.html" method="post" class="popup__container">
-        <button type="button" class="popup__close"></button>
+    <div class="popup">
+      <div class="popup__container">
+        <button type="button" class="popup__close" aria-label="Закрыть"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input type="text" name="personname" class="popup__input popup__input_type_name ">
-        <input type="text" name="personjob" class="popup__input popup__input_type_job">
-        <button type="submit" class="popup__button">Сохранить</button>
-      </form>
-    </section>
+        <form name="profile" action="index.html" method="post" class="popup__form">
+          <input type="text" name="personname" class="popup__input popup__input_type_name ">
+          <input type="text" name="personjob" class="popup__input popup__input_type_job">
+          <button type="submit" class="popup__button">Сохранить</button>
+        </form>
+      </div>
+    </div>
     <section aria-label="Красивые места">
       <ul class="places">
         <li class="place-card">
           <img src="./images/karacaevsk.jpg" alt="Карачаево-Черкесия" class="place-card__image">
           <div class="place-card__info">
-            <h4 class="place-card__title text-over">Карачаевск</h4>
-            <button class="place-card__like"></button>
+            <h2 class="place-card__title text-over">Карачаевск</h2>
+            <button type="button" class="place-card__like" aria-label="Лайк"></button>
           </div>
         </li>
         <li class="place-card">
           <img src="./images/elibrus.jpg" alt="Эльбрус" class="place-card__image">
           <div class="place-card__info">
-            <h4 class="place-card__title text-over">Гора Эльбрус</h4>
-            <button class="place-card__like"></button>
+            <h2 class="place-card__title text-over">Гора Эльбрус</h2>
+            <button type="button" class="place-card__like" aria-label="Лайк"></button>
           </div>
         </li>
         <li class="place-card">
           <img src="./images/dombai.jpg" alt="Домбай" class="place-card__image">
           <div class="place-card__info">
-            <h4 class="place-card__title text-over">Домбай</h4>
-            <button class="place-card__like"></button>
+            <h2 class="place-card__title text-over">Домбай</h2>
+            <button type="button" class="place-card__like" aria-label="Лайк"></button>
           </div>
         </li>
         <li class="place-card">
           <img src="./images/coral-rif.jpg" alt="" class="place-card__image">
           <div class="place-card__info">
-            <h4 class="place-card__title text-over">Коралловый риф</h4>
-            <button class="place-card__like"></button>
+            <h2 class="place-card__title text-over">Коралловый риф</h2>
+            <button type="button" class="place-card__like" aria-label="Лайк"></button>
           </div>
         </li>
         <li class="place-card">
           <img src="./images/kaliningrad.jpg" alt="Музей мирового океана" class="place-card__image">
           <div class="place-card__info">
-            <h4 class="place-card__title text-over">Музей мирового океана</h4>
-            <button class="place-card__like"></button>
+            <h2 class="place-card__title text-over">Музей мирового океана</h2>
+            <button type="button" class="place-card__like" aria-label="Лайк"></button>
           </div>
         </li>
         <li class="place-card">
           <img src="./images/mir.jpg" alt="" class="place-card__image">
           <div class="place-card__info">
-            <h4 class="place-card__title text-over">Подводный "Мир"</h4>
-            <button class="place-card__like"></button>
+            <h2 class="place-card__title text-over">Подводный "Мир"</h2>
+            <button type="button" class="place-card__like" aria-label="Лайк"></button>
           </div>
         </li>
       </ul>
@@ -81,6 +85,6 @@
   <footer class="footer">
     <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
-  <script src="./index.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>

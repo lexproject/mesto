@@ -3,6 +3,7 @@
   width: 24px;
   height: 24px;
   background: url(../../../images/edit.svg) no-repeat center border-box;
+  background-size: cover;
   border: 1px solid #FFFFFF;
   padding: 0;
   cursor: pointer;

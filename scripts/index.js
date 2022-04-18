@@ -5,7 +5,7 @@ let nameProfile = document.querySelector('.profile__title');
 let jobProfile = document.querySelector('.profile__job');
 let nameInput = document.querySelector('.popup__input_type_name');
 let jobInput = document.querySelector('.popup__input_type_job');
-let saveButton = document.querySelector('.popup__container');
+let saveButton = document.querySelector('.popup__form');
 
 function formSubmit(e) {
   e.preventDefault();
