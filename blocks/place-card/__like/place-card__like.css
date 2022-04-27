@@ -11,7 +11,3 @@
 .place-card__like:hover {
   opacity: 0.5;
 }
-
-.place-card__like:active {
-  background: url(../../../images/like-buton-active.svg) center no-repeat;
-}
