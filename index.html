@@ -26,29 +26,45 @@
     </section>
     <section aria-label="Красивые места">
       <ul class="places">
-
       </ul>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
-  <div class="popup">
+  <!--Попап форма редактирования профиля-->
+  <div class="popup popup_edit-profile">
     <div class="popup__form-container">
       <button type="button" class="popup__close" aria-label="Закрыть"></button>
-      <h2 class="popup__title"></h2>
-      <form name="submitinfo" action="index.html" method="post" class="popup__form">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form name="submitProfile" action="index.html" method="post" class="popup__form">
         <input type="text" name="inputtitle" class="popup__input popup__input_type_title ">
         <input type="text" name="inputinfo" class="popup__input popup__input_type_info">
-        <button type="submit" class="popup__button"></button>
+        <button type="submit" class="popup__button">Сохранить</button>
       </form>
     </div>
+  </div>
+  <!--Попап форма добавления места-->
+  <div class="popup popup_add-place">
+    <div class="popup__form-container">
+      <button type="button" class="popup__close" aria-label="Закрыть"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form name="submitPlace" action="index.html" method="post" class="popup__form">
+        <input type="text" name="inputtitle" class="popup__input popup__input_type_title" placeholder="Название" required>
+        <input type="url" name="inputinfo" class="popup__input popup__input_type_info" placeholder="Ссылка на картинку"required>
+        <button type="submit" class="popup__button">Создать</button>
+      </form>
+    </div>
+  </div>
+  <!--Попап изображение-->
+  <div class="popup popup_show-image">
     <div class="popup__image-container">
-      <button type="button" id="popupDel" class="popup__close" aria-label="Закрыть"></button>
+      <button type="button" class="popup__close" aria-label="Закрыть"></button>
       <img src="./images/logo.svg" alt="проект Место" class="popup__image">
       <h2 class="popup__title-image text-over"></h2>
     </div>
   </div>
+  <!--Шаблон-->
   <template id="place">
     <li class="place-card">
       <button type="button" class="place-card__delete" aria-label="Удалить"></button>

@@ -1,16 +1,14 @@
 const editProfile = document.querySelector('.profile__edit-button');
 const buttonAddPlace = document.querySelector('.profile__add-button');
-const openPopup = document.querySelector('.popup');
-const closePopupButton = document.querySelector('.popup__close');
+const openPopupEdit = document.querySelector('.popup_edit-profile');
+const openPopupAdd = document.querySelector('.popup_add-place');
+const openPopupImage = document.querySelector('.popup_show-image');
+const closePopupButton = document.querySelectorAll('.popup__close');
 const nameProfile = document.querySelector('.profile__title');
 const jobProfile = document.querySelector('.profile__job');
 const titleInput = document.querySelector('.popup__input_type_title');
 const infoInput = document.querySelector('.popup__input_type_info');
-const formSubmit = document.querySelector('.popup__form');
-const formTitle = document.querySelector('.popup__title');
-const popupContainer = document.querySelector('.popup__form-container');
-const popupImageContainer = document.querySelector('.popup__image-container');
-const buttonSubmit = document.querySelector('.popup__button');
+const formSubmit = document.querySelectorAll('.popup__form');
 const interactivePlace = document.querySelector('.places');
 
 const initialCards = [
@@ -40,31 +38,17 @@ const initialCards = [
   }
 ];
 
-//Функция открытия модального окна
-function showPopup() {
-  openPopup.classList.add('popup_opened');
-  setTimeout(()=> openPopup.classList.add('popup_opaciti'),100);
-}
-
-//Функция показа окна формы
-function showPopupForm() {
-  popupContainer.classList.add('popup_opened');
-}
-
 //Функция закрытия модальных окон
-function closePopup() {
-  openPopup.classList.remove('popup_opaciti');
+function closePopup(elementPopup) {
+  elementPopup.classList.remove('popup_opaciti');
   setTimeout(()=> {
-    openPopup.classList.remove('popup_opened');
-    popupContainer.classList.remove('popup_opened');
-    popupImageContainer.classList.remove('popup_opened');
-},300);
+    elementPopup.classList.remove('popup_opened');
+  },300);
 }
 
 //Функция создания карточки из шаблона
 function createPlaceElement(placeTitle, placeImage) {
   const placeTemplate = document.querySelector('#place').content;
-  const places = document.querySelector('.places');
   const placeElement = placeTemplate.querySelector('.place-card').cloneNode(true);
   placeElement.querySelector('.place-card__image').src = placeImage;
   placeElement.querySelector('.place-card__image').alt = placeTitle;
@@ -72,7 +56,7 @@ function createPlaceElement(placeTitle, placeImage) {
   placeElement.querySelector('.place-card__like').addEventListener('click', function (evt) {
     evt.target.classList.toggle('place-card__like_active');
   });
-  places.prepend(placeElement);
+  interactivePlace.prepend(placeElement);
 }
 
 //Слушатель и Функция автоматического заполнения карточками по умолчанию
@@ -85,42 +69,35 @@ window.addEventListener("DOMContentLoaded", () => {
 //Функция отправки формы
 function submitForm(e) {
   e.preventDefault();
-  if(infoInput.type === 'text') {
-    nameProfile.textContent = titleInput.value;
-    jobProfile.textContent = infoInput.value;
+  const etarget = e.target;
+  const formNodes = etarget.childNodes;
+  let infoInputForm = formNodes[3];
+  let titleInputForm = formNodes[1];
+  if(infoInputForm.type === 'text') {
+    nameProfile.textContent = titleInputForm.value;
+    jobProfile.textContent = infoInputForm.value;
   }
-  if(infoInput.type === 'url') {
-    createPlaceElement(titleInput.value, infoInput.value);
+  if(infoInputForm.type === 'url') {
+    createPlaceElement(titleInputForm.value, infoInputForm.value);
+    titleInputForm.value = '';
+    infoInputForm.value = '';
   }
-  closePopup();
+  const targetItem = etarget.closest('.popup');
+  closePopup(targetItem);
 }
 
-//Функция подготовки формы редактирования профайла
+//Функция открытия формы редактирования профайла
 function showEditForm () {
-  formTitle.textContent = 'Редактировать профиль';
-  buttonSubmit.textContent = 'Сохранить';
   titleInput.value = nameProfile.textContent;
   infoInput.value = jobProfile.textContent;
-  infoInput.type = 'text';
-  infoInput.removeAttribute('placeholder')
-  titleInput.removeAttribute('placeholder')
-  showPopup();
-  showPopupForm();
+  openPopupEdit.classList.add('popup_opened');
+  setTimeout(()=> openPopupEdit.classList.add('popup_opaciti'),100);
 }
 
-//Функция подготовки формы добавления места
+//Функция открытия формы добавления места
 function showAddForm () {
-  formTitle.textContent = 'Новое место';
-  buttonSubmit.textContent = 'Создать';
-  infoInput.type = 'url';
-  infoInput.setAttribute('placeholder', 'Ссылка на картинку');
-  infoInput.value = '';
-  infoInput.setAttribute('required', '');
-  titleInput.setAttribute('required', '');
-  titleInput.value = '';
-  titleInput.setAttribute('placeholder', 'Название');
-  showPopup();
-  showPopupForm();
+  openPopupAdd.classList.add('popup_opened');
+  setTimeout(()=> openPopupAdd.classList.add('popup_opaciti'),100);
 }
 
 //Функция открытия изображения в модальном окне
@@ -132,8 +109,8 @@ function showPopupImage (item) {
   popupTitle.textContent = placeCardTitle.textContent;
   popupImage.src = placeCardImage.src;
   popupImage.alt = placeCardImage.alt;
-  showPopup();
-  popupImageContainer.classList.add('popup_opened');
+  openPopupImage.classList.add('popup_opened');
+  setTimeout(()=> openPopupImage.classList.add('popup_opaciti'),100);
 }
 
 //Функция интеракивного взаимодействия с карточками
@@ -148,10 +125,14 @@ interactivePlace.addEventListener('click', (e) =>{
   }
 });
 
-
-formSubmit.addEventListener('submit', submitForm);
+formSubmit.forEach((item)=>{
+  item.addEventListener('submit', submitForm);});
 editProfile.addEventListener('click', showEditForm);
 buttonAddPlace.addEventListener('click', showAddForm);
-closePopupButton.addEventListener('click',closePopup);
-document.querySelector('#popupDel').addEventListener('click',closePopup);;
-
+closePopupButton.forEach(function(elementClose) {
+  elementClose.addEventListener('click', (ev) => {
+    const etarget = ev.target;
+    const targetItem = etarget.closest('.popup');
+    closePopup(targetItem);
+  });
+});

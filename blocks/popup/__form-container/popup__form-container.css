@@ -1,6 +1,6 @@
 .popup__form-container {
   position: relative;
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   max-width: 430px;
