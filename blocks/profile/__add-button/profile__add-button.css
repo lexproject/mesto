@@ -9,6 +9,7 @@
   background: url(../../../images/add-button.svg) no-repeat center;
   padding: 0;
   cursor: pointer;
+  outline: none;
 }
 
 .profile__add-button:hover {

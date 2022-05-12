@@ -3,4 +3,6 @@
   max-height: 75vh;
   object-fit: cover;
   object-position: center;
+  cursor: auto;
+  outline: none;
 }
