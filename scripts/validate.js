@@ -3,14 +3,25 @@ function verificationInput(inputList) {
     return !inputElement.validity.valid;
   });
 }
+ function resetErrorField(formElement, inputList, set){
+  inputList.some((inputElement) => {
+    if(inputElement.classList.contains(set.inputErrorClass)) {
+    inputElement.classList.remove(set.inputErrorClass);}
+  });
+  const spanList = Array.from(formElement.querySelectorAll(set.inputErrorSelector));
+  spanList.some((spanElement) => {
+    if(spanElement.textContent !== ''){spanElement.textContent = ''}
+  });
+ }
 
-
-function togleSubmitButton(formElement, inputList, set) {
-  const buttonElement = formElement.querySelector(set.submitButtonSelector);
+function togleSubmitButton(inputList, buttonElement, set) {
   if (verificationInput(inputList)) {
     buttonElement.classList.add(set.inactiveButtonClass);
-  } else {
+    buttonElement.setAttribute("disabled", "disabled");
+  }
+  else {
     buttonElement.classList.remove(set.inactiveButtonClass);
+    buttonElement.removeAttribute("disabled");
   }
 }
 
@@ -36,13 +47,25 @@ function checkValidity(formElement, inputElement, set) {
   }
 }
 
-function setEvent(formElement, set) {
+function checkFormValidity(formElement, inputList, buttonElement, set) {
+  document.querySelector(set.buttonAddPlace).addEventListener('click', ()=>{
+    togleSubmitButton(inputList, buttonElement, set);
+    resetErrorField(formElement, inputList, set);
+  });
+  document.querySelector(set.buttonProfileEdit).addEventListener('click', ()=>{
+    togleSubmitButton(inputList, buttonElement, set);
+    resetErrorField(formElement, inputList, set)
+  });
+}
+
+function setEventListener(formElement, set) {
   const inputList = Array.from(formElement.querySelectorAll(set.inputSelector));
-  togleSubmitButton(formElement, inputList, set);
+  const buttonElement = formElement.querySelector(set.submitButtonSelector);
+  checkFormValidity(formElement, inputList, buttonElement, set);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
+      togleSubmitButton(inputList, buttonElement, set);
       checkValidity(formElement, inputElement, set);
-      togleSubmitButton(formElement, inputList, set);
     });
   });
 }
@@ -50,7 +73,7 @@ function setEvent(formElement, set) {
 function enableValidation(set){
   const formList = Array.from(document.querySelectorAll(set.formSelector));
   formList.forEach((formElement) => {
-    setEvent(formElement, set);
+    setEventListener(formElement, set);
   });
 }
 
@@ -60,5 +83,8 @@ enableValidation({
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_active',
   submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled'
+  inactiveButtonClass: 'popup__button_disabled',
+  buttonProfileEdit: '.profile__edit-button',
+  buttonAddPlace: '.profile__add-button',
+  inputErrorSelector: '.popup__input-error'
 });

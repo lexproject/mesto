@@ -38,11 +38,11 @@
       <button type="button" class="popup__close" aria-label="Закрыть"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form name="profile" action="index.html" method="post" class="popup__form popup__form_edit-profile" novalidate>
-        <label>
+        <label class="popup__form-label">
           <input type="text" name="inputtitle" id="profile-title-input" class="popup__input popup__input_profile-title" minlength="2" maxlength="40" required>
           <span class="profile-title-input-error popup__input-error"></span>
         </label>
-        <label>
+        <label class="popup__form-label">
           <input type="text" name="inputinfo" id="profile-info-input" class="popup__input popup__input_profile-info" minlength="2" maxlength="200" required>
           <span class="profile-info-input-error popup__input-error"></span>
         </label>
@@ -56,11 +56,11 @@
       <button type="button" class="popup__close" aria-label="Закрыть"></button>
       <h2 class="popup__title">Новое место</h2>
       <form name="place" action="index.html" method="post" class="popup__form popup__form_add-place" novalidate>
-        <label>
+        <label class="popup__form-label">
           <input type="text" id="title-place-input" name="inputtitle" class="popup__input popup__input_title-image" placeholder="Название" minlength="2" maxlength="40" required>
           <span class="title-place-input-error popup__input-error"></span>
         </label>
-        <label>
+        <label class="popup__form-label">
           <input type="url" name="inputinfo" id="url-place-input" class="popup__input popup__input_image-place" placeholder="Ссылка на картинку" required>
           <span class="url-place-input-error popup__input-error"></span>
         </label>
