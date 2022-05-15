@@ -46,25 +46,25 @@ const initialCards = [
   }
 ];
 
-
-//Функция открытия модальных окон
-function openPopup (popup) {
-  document.addEventListener('keydown', closeEventKey);
-  popup.classList.add('popup_opened');
-}
-
-//Функция закрытия модальных окон
-function closePopup(popup) {
-  document.removeEventListener('keydown', closeEventKey);
-  popup.classList.remove('popup_opened');
-}
-
-function closeEventKey(event) {
+//Функция закрытия клавишей Escape
+function closeEscapeKey(event) {
   const key = event.key;
     if (key === "Escape") {
      closePopup(document.querySelector('.popup_opened'));
     }
   }
+
+//Функция открытия модальных окон
+function openPopup (popup) {
+  document.addEventListener('keydown', closeEscapeKey);
+  popup.classList.add('popup_opened');
+}
+
+//Функция закрытия модальных окон
+function closePopup(popup) {
+  document.removeEventListener('keydown', closeEscapeKey);
+  popup.classList.remove('popup_opened');
+}
 
 //Функция открытия изображения в модальном окне
 function showPopupImage (cardImage, cardTitle) {
