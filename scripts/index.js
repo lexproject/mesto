@@ -77,9 +77,9 @@ function showPopupImage (cardImage, cardTitle) {
 //Функция создания карточки из шаблона
 function createCard(placeTitle, placeImage) {
   const placeElement = placeTemplate.querySelector('.place-card').cloneNode(true);
-  const Image = placeElement.querySelector('.place-card__image');
-  Image.src = placeImage;
-  Image.alt = placeTitle;
+  const cardImage = placeElement.querySelector('.place-card__image');
+  cardImage.src = placeImage;
+  cardImage.alt = placeTitle;
   placeElement.querySelector('.place-card__title').textContent = placeTitle;
   placeElement.querySelector('.place-card__like').addEventListener('click', function (evt) {
     evt.target.classList.toggle('place-card__like_active');
@@ -124,7 +124,6 @@ formProfileSubmit.addEventListener('submit', (evt) => {
 formAddPlaceSubmit.addEventListener('submit', (evt) => {
   evt.preventDefault();
   placeInteractive.prepend(createCard(inputPlaceTitle.value, inputPlaceLink.value));
-  formAddPlaceSubmit.reset();
   closePopup(popupAddOpen);
 });
 //слушатели событий

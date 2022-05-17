@@ -3,16 +3,7 @@ function verificationInput(inputList) {
     return !inputElement.validity.valid;
   });
 }
- function resetErrorField(formElement, inputList, set){
-  inputList.some((inputElement) => {
-    if(inputElement.classList.contains(set.inputErrorClass)) {
-    inputElement.classList.remove(set.inputErrorClass);}
-  });
-  const spanList = Array.from(formElement.querySelectorAll(set.inputErrorSelector));
-  spanList.some((spanElement) => {
-    if(spanElement.textContent !== ''){spanElement.textContent = ''}
-  });
- }
+
 
 function togleSubmitButton(inputList, buttonElement, set) {
   if (verificationInput(inputList)) {
@@ -39,6 +30,12 @@ function hideError(formElement, inputElement, set) {
   errorItem.textContent = '';
 }
 
+function resetErrorField(formElement, inputList, set){
+  inputList.forEach((inputElement) => {
+    hideError(formElement, inputElement, set)
+  });
+ }
+
 function checkValidity(formElement, inputElement, set) {
   if (!inputElement.validity.valid) {
     showError(formElement, inputElement, inputElement.validationMessage, set);
@@ -48,13 +45,10 @@ function checkValidity(formElement, inputElement, set) {
 }
 
 function checkFormValidity(formElement, inputList, buttonElement, set) {
-  document.querySelector(set.buttonAddPlace).addEventListener('click', ()=>{
+  const buttonShowForm = document.querySelector(`.${formElement.id}-button`);
+  buttonShowForm.addEventListener('click', ()=>{
     togleSubmitButton(inputList, buttonElement, set);
     resetErrorField(formElement, inputList, set);
-  });
-  document.querySelector(set.buttonProfileEdit).addEventListener('click', ()=>{
-    togleSubmitButton(inputList, buttonElement, set);
-    resetErrorField(formElement, inputList, set)
   });
 }
 
