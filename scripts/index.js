@@ -1,5 +1,8 @@
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
+import {initialCards, formSet} from './data.js';
+
+//Константы
 const profileEdit = document.querySelector('.profile__edit-button');
 const buttonAddPlace = document.querySelector('.profile__add-button');
 const popupEditOpen = document.querySelector('.popup_edit-profile');
@@ -16,51 +19,9 @@ const placeInteractive = document.querySelector('.places');
 const placeTemplate = document.querySelector('#place').content;
 const inputPlaceTitle = document.querySelector('.popup__input_title-image');
 const inputPlaceLink = document.querySelector('.popup__input_image-place');
-const popupImage = document.querySelector('.popup__image');
-const popupTitle = document.querySelector('.popup__title-image');
 const popups = document.querySelectorAll('.popup');
-const popupForms = document.querySelectorAll('.popup__form');
-
-//Массив с предустановленными карточками
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
-// Объект настроек для класса валидатора форм
-const formSet = {
-  inputSelector: '.popup__input',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_active',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  buttonProfileEdit: '.profile__edit-button',
-  buttonAddPlace: '.profile__add-button',
-  inputErrorSelector: '.popup__input-error'
-}
-
+const formAddValidate = new FormValidator(formSet, formAddPlaceSubmit);
+const formEditValidate = new FormValidator(formSet, formProfileSubmit);
 
 //Функция закрытия клавишей Escape
 function closeEscapeKey(event) {
@@ -83,11 +44,14 @@ function closePopup(popup) {
 }
 
 //Функция открытия изображения в модальном окне
-export function showPopupImage (cardImage, cardTitle) {
-  popupTitle.textContent = cardTitle;
-  popupImage.src = cardImage;
-  popupImage.alt = cardTitle;
+function showPopupImage () {
   openPopup (popupImageOpen);
+}
+
+// Функция создания карточки
+function setCard(item) {
+  const card = new Card(item, placeTemplate, showPopupImage);
+   return card.createCard();
 }
 
 //Функция открытия формы редактирования профайла
@@ -114,12 +78,13 @@ formProfileSubmit.addEventListener('submit', (evt) => {
 formAddPlaceSubmit.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const formAddCard = {name: inputPlaceTitle.value, link: inputPlaceLink.value};
-  const placeCard = new Card(formAddCard, placeTemplate);
-  placeInteractive.prepend(placeCard.createCard());
+  placeInteractive.prepend(setCard(formAddCard));
   closePopup(popupAddOpen);
 });
+
 //слушатели событий
 profileEdit.addEventListener('click', showEditForm);
+
 buttonAddPlace.addEventListener('click', showAddForm);
 
 popupButtonsClose.forEach((elementClose) => {
@@ -136,16 +101,13 @@ popups.forEach((itemClose) => {
   });
 });
 
-//Слушатель и Функция автоматического заполнения карточками по умолчанию
+formEditValidate.enableValidation();
+formAddValidate.enableValidation();
+
+// Функция автоматического заполнения карточками по умолчанию
 window.addEventListener("DOMContentLoaded", () => {
   initialCards.forEach((item)=>{
-    const card = new Card(item, placeTemplate);
-    const cardElement = card.createCard();
-    placeInteractive.prepend(cardElement);
-  });
-  popupForms.forEach((itemset)=>{
-    const formValidate = new FormValidator(formSet, itemset);
-    formValidate.enableValidation();
+    placeInteractive.prepend(setCard(item));
   });
 });
 

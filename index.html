@@ -39,11 +39,11 @@
       <h2 class="popup__title">Редактировать профиль</h2>
       <form name="edit" id="profile__edit" action="index.html" method="post" class="popup__form popup__form_edit-profile" novalidate>
         <label class="popup__form-label">
-          <input type="text" name="inputtitle" id="profile-title-input" class="popup__input popup__input_profile-title" minlength="2" maxlength="40" required>
+          <input type="text" name="inputtitle" id="profile-title-input" class="popup__input popup__input_profile-title" placeholder="Имя" minlength="2" maxlength="40" required>
           <span class="profile-title-input-error popup__input-error"></span>
         </label>
         <label class="popup__form-label">
-          <input type="text" name="inputinfo" id="profile-info-input" class="popup__input popup__input_profile-info" minlength="2" maxlength="200" required>
+          <input type="text" name="inputinfo" id="profile-info-input" class="popup__input popup__input_profile-info" placeholder="Род деятельности" minlength="2" maxlength="200" required>
           <span class="profile-info-input-error popup__input-error"></span>
         </label>
         <button type="submit" class="popup__button">Сохранить</button>
@@ -88,7 +88,5 @@
     </li>
   </template>
   <script type="module" src="./scripts/index.js"></script>
-  <script type="module" src="./scripts/FormValidator.js"></script>
-  <script type="module" src="./scripts/Card.js"></script>
 </body>
 </html>

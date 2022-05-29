@@ -5,7 +5,8 @@
   top: 20px;
   right: 20px;
   border: none;
-  background: url(../../../images/del-button.svg) no-repeat;
+  background: url(../../../images/del-button.svg) no-repeat #00000040;
+  box-shadow: 0px -1px 12px 2px #0000005c;
   padding: 0;
   cursor: pointer;
 }
