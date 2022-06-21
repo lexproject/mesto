@@ -1,10 +1,12 @@
 .places {
   display: grid;
+  justify-items: center;
   grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
   grid-template-rows: repeat(auto-fit, minmax(361px, 1fr));
   gap: 17px;
   margin: 50px auto 70px;
   max-width: 880px;
+  min-height: 50vh;
   list-style-type: none;
   padding: 0;
 }

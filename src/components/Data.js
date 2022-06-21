@@ -40,3 +40,20 @@ export const formSet = {
   buttonAddPlace: '.profile__add-button',
   inputErrorSelector: '.popup__input-error'
 }
+
+//Константы
+export const profileEdit = document.querySelector('.profile__edit-button');
+export const buttonAddPlace = document.querySelector('.profile__add-button');
+export const popupEditOpen = document.querySelector('.popup_edit-profile');
+export const popupAddOpen = document.querySelector('.popup_add-place');
+export const popupImageOpen = document.querySelector('.popup_show-image');
+export const nameProfile = document.querySelector('.profile__title');
+export const jobProfile = document.querySelector('.profile__job');
+export const profileTitleInput = document.querySelector('.popup__input_profile-title');
+export const profileInfoInput = document.querySelector('.popup__input_profile-info');
+export const formProfileSubmit = document.querySelector('.popup__form_edit-profile');
+export const formAddPlaceSubmit = document.querySelector('.popup__form_add-place');
+export const placeInteractive = document.querySelector('.places');
+export const placeTemplate = document.querySelector('#place').content;
+export const popupImage = document.querySelector('.popup__image');
+export const popupTitle = document.querySelector('.popup__title-image');
