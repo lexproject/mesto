@@ -55,5 +55,3 @@ export const formProfileSubmit = document.querySelector('.popup__form_edit-profi
 export const formAddPlaceSubmit = document.querySelector('.popup__form_add-place');
 export const placeInteractive = document.querySelector('.places');
 export const placeTemplate = document.querySelector('#place').content;
-export const popupImage = document.querySelector('.popup__image');
-export const popupTitle = document.querySelector('.popup__title-image');
