@@ -35,9 +35,7 @@ export const formSet = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_active',
   submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  buttonProfileEdit: '.profile__edit-button',
-  buttonAddPlace: '.profile__add-button',
+  inactiveButtonClass: 'popup__button_type_disabled',
   inputErrorSelector: '.popup__input-error'
 }
 
@@ -55,3 +53,8 @@ export const formProfileSubmit = document.querySelector('.popup__form_edit-profi
 export const formAddPlaceSubmit = document.querySelector('.popup__form_add-place');
 export const placeInteractive = document.querySelector('.places');
 export const placeTemplate = document.querySelector('#place').content;
+export const popupDeletePlace = document.querySelector('.popup_delete-place');
+export const popupAvatarUpdate = document.querySelector('.popup_edit-avatar');
+export const avatarEditButton = document.querySelector('.profile__avatar-button');
+export const formAvatarSubmit = document.querySelector('.popup__form_edit-avatar');
+export const avatarIcon = document.querySelector('.profile__avatar');

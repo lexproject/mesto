@@ -1,4 +1,5 @@
 import Popup from "./Popup.js";
+import loadImage from "../images/loading_icon.svg";
 export default class PopupWithImage extends Popup {
   constructor ({popupSelector}) {
     super({popupSelector});
@@ -8,9 +9,16 @@ export default class PopupWithImage extends Popup {
   }
 
   open({name, link}) {
-    super.open();
     this._popupTitle.textContent = name;
     this._popupImage.src = link;
     this._popupImage.alt = name;
+    super.open();
+  }
+
+  close() {
+    super.close();
+    this._popupTitle.textContent = 'Загрузка';
+    this._popupImage.src = loadImage;
+    this._popupImage.alt = 'Подождите идёт загрузка';
   }
 }
