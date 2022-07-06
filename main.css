@@ -18,7 +18,7 @@
 .popup__form-container_type_confirm{min-height:181px}
 .popup__form-container_type_avatar-edit{min-height:272px}
 .popup__title{font-size:24px;font-weight:900;line-height:1.2;margin:0;text-align:left}@media screen and (max-width:480px){.popup__title{font-size:18px;padding-bottom:25px}}
-.popup__form{display:flex;flex-direction:column;min-height:182px}
+.popup__form{display:flex;flex-direction:column}
 .popup__form_edit-avatar{min-height:130px}
 .popup__form-label{height:56px}
 .popup__input{background-color:transparent;border:0;border-bottom:1px solid rgba(0,0,0,.2);box-sizing:border-box;font-size:14px;font-weight:400;height:30px;line-height:1.2;outline:none;padding:0;width:100%}
