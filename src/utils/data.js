@@ -28,15 +28,14 @@ export const initialCards = [
 ];
 
 // Объект настроек для класса валидатора форм
-export const formSet = {
+export const selectorSet = {
   popupImageSelector: '.popup__image',
   popupTitleSelector: '.popup__title-image',
   inputSelector: '.popup__input',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_active',
   submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_type_disabled',
-  inputErrorSelector: '.popup__input-error'
+  inactiveButtonClass: 'popup__button_type_disabled'
 }
 
 //Константы
@@ -58,3 +57,10 @@ export const popupAvatarUpdate = document.querySelector('.popup_edit-avatar');
 export const avatarEditButton = document.querySelector('.profile__avatar-button');
 export const formAvatarSubmit = document.querySelector('.popup__form_edit-avatar');
 export const avatarIcon = document.querySelector('.profile__avatar');
+export const profileSelectors = {
+  name: '.profile__title',
+  about: '.profile__job',
+  avatar: '.profile__avatar',
+  nameInput: '.popup__input_profile-title',
+  aboutInput: '.popup__input_profile-info'
+}

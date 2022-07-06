@@ -7,7 +7,8 @@ class Api {
   getUserMe() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
-    });
+    })
+    .then(res=>this._getResponseData(res));
   }
 ////////////////////////////
   setUserMe(dataFormProfile) {
@@ -18,13 +19,15 @@ class Api {
       name: dataFormProfile.name,
       about: dataFormProfile.about
     })
-  });
+  })
+  .then(res=>this._getResponseData(res));
   }
 //////////////////////////////
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards `, {
       headers: this._headers
-    });
+    })
+    .then(res=>this._getResponseData(res));
   }
 ////////////////////////////
   setNewCard(dataFormCard) {
@@ -35,28 +38,32 @@ class Api {
         name: dataFormCard.name,
         link: dataFormCard.link
       })
-    });
+    })
+    .then(res=>this._getResponseData(res));
   }
 /////////////////////////////////////
   putLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: this._headers
-    });
+    })
+    .then(res=>this._getResponseData(res));
   }
 ///////////////////////////////
   pullOffLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: this._headers
-    });
+    })
+    .then(res=>this._getResponseData(res));
   }
 //////////////////////////
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers
-    });
+    })
+    .then(res=>this._getResponseData(res));
   }
 /////////////////////////////
   updateAvatar(avatar) {
@@ -66,8 +73,17 @@ class Api {
     body: JSON.stringify({
       avatar: avatar
     })
-  });
+  })
+  .then(res=>this._getResponseData(res));
   }
+
+  _getResponseData(res) {
+    if (!res.ok) {
+        return Promise.reject(`Ошибка: ${res.status}`);
+    }
+    return res.json();
+  }
+
 }
 
 

@@ -1,16 +1,14 @@
 export default class FormValidator {
-  constructor (set, formElement) {
+  constructor (selectorSet, formElement) {
     this._formElement = formElement;
-    this._inputSelector = set.inputSelector;
-    this._inputErrorClass = set.inputErrorClass;
-    this._errorClass = set.errorClass;
-    this._submitButtonSelector = set.submitButtonSelector;
-    this._inactiveButtonClass = set.inactiveButtonClass;
-    this._inputErrorSelector = set.inputErrorSelector;
+    this._inputSelector = selectorSet.inputSelector;
+    this._inputErrorClass = selectorSet.inputErrorClass;
+    this._errorClass = selectorSet.errorClass;
+    this._submitButtonSelector = selectorSet.submitButtonSelector;
+    this._inactiveButtonClass = selectorSet.inactiveButtonClass;
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     this._buttonSubmit = this._formElement.querySelector(this._submitButtonSelector);
   }
-
 
   _verificationInput() {
     return this._inputList.some((inputElement) => {
@@ -44,26 +42,18 @@ export default class FormValidator {
     errorItem.textContent = '';
   }
 
-  _resetErrorField(){
+  resetErrorField(){
     this._inputList.forEach((inputElement) => {
       this._hideError(inputElement)
     });
+    this._togleSubmitButton();
   }
 
   _checkValidity(inputElement) {
     (!inputElement.validity.valid) ? this._showError(inputElement) : this._hideError(inputElement);
   }
 
-  _checkFormValidity() {
-    const buttonShowForm = document.querySelector(`.${this._formElement.id}-button`);
-    buttonShowForm.addEventListener('click', ()=>{
-      this._togleSubmitButton();
-      this._resetErrorField();
-    });
-  }
-
   _setEventListener() {
-    this._checkFormValidity();
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', ()=> {
         this._togleSubmitButton();

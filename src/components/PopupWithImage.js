@@ -1,9 +1,8 @@
 import Popup from "./Popup.js";
 import loadImage from "../images/loading_icon.svg";
 export default class PopupWithImage extends Popup {
-  constructor ({popupSelector}) {
-    super({popupSelector});
-    this._popup = popupSelector;
+  constructor ({popupElement}) {
+    super({popupElement});
     this._popupImage = this._popup.querySelector('.popup__image');
     this._popupTitle = this._popup.querySelector('.popup__title-image');
   }
