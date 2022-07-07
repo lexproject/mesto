@@ -1,6 +1,7 @@
 export default class Section {
-  constructor ({renderer}, containerInsert) {
-    this._container = containerInsert;
+  constructor ({renderer}, containerSelector) {
+    this._containerSelector = containerSelector;
+    this._container = document.querySelector(this._containerSelector);
     this._renderer = renderer;
   }
 

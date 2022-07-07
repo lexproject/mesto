@@ -6,15 +6,8 @@ import {
   profileTitleInput,
   profileInfoInput,
   buttonAddPlace,
-  popupEditOpen,
-  popupAddOpen,
-  popupImageOpen,
   formProfileSubmit,
   formAddPlaceSubmit,
-  placeInteractive,
-  placeTemplate,
-  popupDeletePlace,
-  popupAvatarUpdate,
   avatarEditButton,
   formAvatarSubmit,
   profileSelectors
@@ -28,21 +21,21 @@ import {api} from '../components/Api.js';
 import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 
 
-const placeConfirmDelete = new PopupWithConfirmation({ popupElement: popupDeletePlace});
+const placeConfirmDelete = new PopupWithConfirmation({ popupSelector: '.popup_delete-place'});
 const formAddValidate = new FormValidator(selectorSet, formAddPlaceSubmit);
 const formEditValidate = new FormValidator(selectorSet, formProfileSubmit);
 const formAvatarValidate = new FormValidator(selectorSet, formAvatarSubmit);
 const userInfo = new UserInfo (profileSelectors)
-const popupImageAdd = new PopupWithImage ({ popupElement: popupImageOpen });
+const popupImageAdd = new PopupWithImage ({ popupSelector: '.popup_show-image' });
 ///Создание карточек////////////////////////
 const createCard = (item) => {
-  const card = new Card(item, placeTemplate, {
+  const card = new Card(item, '#place', {
     handleCardClickImage: () => {popupImageAdd.open(item);},
     handleCardClickDelete: () => {placeConfirmDelete.open(()=>{
       api.deleteCard(item._id)
         .then((result) => {
           console.log(result);
-          card._removeCardElement();
+          card.removeCardElement();
           placeConfirmDelete.close();
         })
         .catch(err=>console.log(`Ошибка: ${err}`));
@@ -63,17 +56,17 @@ const createCard = (item) => {
   return cardElement
 }
 
-const renderCard = new Section ({renderer: item=>renderCard.addItem(createCard(item))}, placeInteractive);
+const renderCard = new Section ({renderer: item=>renderCard.addItem(createCard(item))}, '.places');
 
 //Форма добавления данных пользователя
-const profileFormSubmit = new PopupWithForm ({popupElement: popupEditOpen}, {submitForm: (data) => {
+const profileFormSubmit = new PopupWithForm ({popupSelector: '.popup_edit-profile'}, {submitForm: (data) => {
   api.setUserMe(data)
   .then((res) => {userInfo.setUserInfo(res);profileFormSubmit.close();})
   .catch((err) => {console.log(`Ошибка: ${err}`);})
   .finally(() => {profileFormSubmit.renderLoading(false);});
 }});
 //Форма Добавление и отрисовки карточки
-const placeFormSubmit = new PopupWithForm ( {popupElement: popupAddOpen}, {submitForm: (item) => {
+const placeFormSubmit = new PopupWithForm ( {popupSelector: '.popup_add-place'}, {submitForm: (item) => {
   api.setNewCard(item)
   .then((post) => {
     const cardElement = createCard(post);
@@ -84,7 +77,7 @@ const placeFormSubmit = new PopupWithForm ( {popupElement: popupAddOpen}, {submi
   .finally(() => {placeFormSubmit.renderLoading(false);});
 }});
 //Форма обновления аватара
-const avatarFormSubmit = new PopupWithForm ({popupElement: popupAvatarUpdate},{submitForm: (avatar) => {
+const avatarFormSubmit = new PopupWithForm ({popupSelector: '.popup_edit-avatar'},{submitForm: (avatar) => {
     api.updateAvatar(avatar.link)
     .then(newAvatar=>{userInfo.setAvatar(newAvatar);avatarFormSubmit.close();})
     .catch(err=>console.log(`Ошибка: ${err}`))

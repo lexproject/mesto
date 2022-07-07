@@ -1,6 +1,7 @@
 export default class Card {
-  constructor(data, templateElement, cullbackSet) {
-    this._templateElement = templateElement;
+  constructor(data, templateSelector, cullbackSet) {
+    this._templateSelector = templateSelector;
+    this._templateElement = document.querySelector(this._templateSelector).content;
     this._handleCardClickImage = cullbackSet.handleCardClickImage;
     this._handleCardClickDelete = cullbackSet.handleCardClickDelete;
     this._handleCardClickLikeOn = cullbackSet.handleCardClickLikeOn;
@@ -10,7 +11,6 @@ export default class Card {
     this._cardImage = this._element.querySelector('.place-card__image');
     this._countLike = this._element.querySelector('.place-card__like-count');
     this._deleteCardButton = this._element.querySelector('.place-card__delete');
-    this._userId = document.querySelector('.profile__title').id;
     this._likeSelector = 'place-card__like_active';
     this._data = data;
   }
@@ -20,12 +20,12 @@ export default class Card {
   }
 
   _removeDeleteButton(){
-    if(this._data.owner._id !== this._userId){
+    if(this._data.owner._id !== 'a871bc59e180b66e3f1b095f'){
       this._deleteCardButton.remove();
     }
   }
 
-  _removeCardElement() {
+  removeCardElement() {
     this._element.remove();
     this._element = null;
   }
